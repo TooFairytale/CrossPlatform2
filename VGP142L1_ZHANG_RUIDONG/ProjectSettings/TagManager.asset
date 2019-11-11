@@ -8,6 +8,9 @@ TagManager:
   - item
   - endCube
   - enemy
+  - lavaObstacle
+  - waterObstacle
+  - toxicObstacle
   layers:
   - Default
   - TransparentFX

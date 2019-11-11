@@ -3,70 +3,67 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityStandardAssets.Characters.ThirdPerson;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     public bool keyPickedUp;
-    public bool Shoot1H;
-    public bool Shoot2H;
-    public bool Spell;
     public Animator anim;
+    public float playerHP;
+    ThirdPersonCharacter TPScri;
+    public Image healthBar;
     // Start is called before the first frame update
     void Start()
     {
-        anim = this.gameObject.GetComponent<Animator>();
+        anim = GetComponent<Animator>();
+        TPScri = GetComponent<ThirdPersonCharacter>();
+        playerHP = 100;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.J))
+        if (Input.GetKeyDown(KeyCode.J))
         {
-            Shoot1Hand();
+            anim.Play("Shooting1Hand");
         }
-        else if(Input.GetKeyDown(KeyCode.K))
+        else if (Input.GetKeyDown(KeyCode.K))
         {
-            Shoot2Hand();
+            anim.Play("Shooting2Hands");
         }
-        else if(Input.GetKeyDown(KeyCode.L))
+        else if (Input.GetKeyDown(KeyCode.L))
         {
-            SpellCast();
+            anim.Play("Spell");
         }
-        
+        else if (Input.GetKeyDown(KeyCode.Space))
+        {
+            anim.Play("Jump");
+        }
+        else if (Input.GetKeyDown(KeyCode.I))
+        {
+            GoToGameOver();
+        }
+
     }
     IEnumerator wait(string name, bool value)
     {
         yield return new WaitForSeconds(2.0f);
         anim.SetBool(name, value);
     }
-    void Shoot1Hand()
-    {
-        anim.SetBool("Shoot1H", true);
-        //StartCoroutine(wait("Shoot1H", false));
-    }
     
-    void Shoot2Hand()
-    {   
-        anim.SetBool("Shoot2H", true);
-        //StartCoroutine(wait("Shoot2H", false));
-    }
-    void SpellCast()
-    {
-        anim.SetBool("Spell", true);
-        //StartCoroutine(wait("Spell", false));
-    }
-    
+
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag =="key")
+        if (collision.gameObject.tag == "key")
         {
             try
             {
-            Destroy(collision.gameObject);
-            keyPickedUp = true;
+                Destroy(collision.gameObject);
+                keyPickedUp = true;
                 throw new NullReferenceException("reference is not valid");
             }
-            catch(NullReferenceException ex)
+            catch (NullReferenceException ex)
             {
                 Debug.Log(ex.Message);
             }
@@ -80,23 +77,36 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.tag == "endCube")
         {
-            if(keyPickedUp == true)
+            if (keyPickedUp == true)
             {
                 SceneManager.LoadScene(0);
             }
         }
     }
 
-    public void StopShoot1Hand()
+    public void AnimationEnd()
     {
-        anim.SetBool("Shoot1H", false);
+        anim.Play("Grounded");
     }
-    public void StopShoot2Hand()
+    public void GoToGameOver()
     {
-        anim.SetBool("Shoot2H", false);
+        SceneManager.LoadScene(2);
     }
-    public void StopSpellCast()
+    public void playerDie()
     {
-        anim.SetBool("Spell", false);
+        if (playerHP <= 0)
+        {
+            SceneManager.LoadScene(2);
+        }
+    }
+    public void TakeDamage(float amount)
+    {
+        playerHP -= amount;
+        healthBar.fillAmount = playerHP/100f;
+    }
+    public void changeSpeedTo(float Speed)
+    {
+        TPScri.m_MoveSpeedMultiplier = Speed;
+        TPScri.m_AnimSpeedMultiplier = Speed;
     }
 }
