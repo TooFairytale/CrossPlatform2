@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.AI;
 
 public class BooLikeEnemy : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class BooLikeEnemy : MonoBehaviour
     public bool isRunning;
     public Animator anim;
     public MeshRenderer rend;
+    NavMeshAgent agent;
+    public GameObject key;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +22,7 @@ public class BooLikeEnemy : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         rend = GetComponent<MeshRenderer>();
+        agent = GetComponent<NavMeshAgent>();
         
     }
 
@@ -35,7 +39,8 @@ public class BooLikeEnemy : MonoBehaviour
             {
 
             rb.velocity = Vector3.zero;
-            transform.localScale = new Vector3(0, 0, 0);
+                agent.velocity = Vector3.zero;
+            //transform.localScale = new Vector3(0, 0, 0);
             //rend.enabled = false;
             isRunning = false;
             }
@@ -49,7 +54,8 @@ public class BooLikeEnemy : MonoBehaviour
             transform.localScale = new Vector3(1, 1, 1);
             isRunning = true;
             //rend.enabled = true;
-            transform.position += transform.forward * 3 * Time.deltaTime;
+            //transform.position += transform.forward * 3 * Time.deltaTime;
+                agent.SetDestination(target.position);
             //Debug.Log("runrun");
             }
         }
@@ -62,5 +68,15 @@ public class BooLikeEnemy : MonoBehaviour
             Destroy(collision.gameObject);
             SceneManager.LoadScene(0);
         }
+    }
+    public void EnemyDie()
+    {
+        Destroy(this.gameObject);
+        
+        dropItem(key);
+    }
+    public void dropItem(GameObject I)
+    {
+        Instantiate(I, transform.position, Quaternion.identity);
     }
 }

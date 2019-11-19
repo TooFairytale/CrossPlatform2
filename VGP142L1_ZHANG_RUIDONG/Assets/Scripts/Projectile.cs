@@ -9,7 +9,9 @@ public class Projectile : MonoBehaviour
         if(collision.gameObject.tag == "enemy")
         {
             Destroy(gameObject);
-            Destroy(collision.gameObject);
+            //Destroy(collision.gameObject);
+            BooLikeEnemy enemySri = GameObject.Find("Zombie1").GetComponent<BooLikeEnemy>();
+            enemySri.anim.Play("Z_FallingBack 0");
         }
         else
         {
