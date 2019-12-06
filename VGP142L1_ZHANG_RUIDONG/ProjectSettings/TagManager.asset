@@ -11,6 +11,7 @@ TagManager:
   - lavaObstacle
   - waterObstacle
   - toxicObstacle
+  - SpeedPower
   layers:
   - Default
   - TransparentFX

@@ -15,6 +15,7 @@ public class BooLikeEnemy : MonoBehaviour
     public MeshRenderer rend;
     NavMeshAgent agent;
     public GameObject key;
+    public ParticleSystem particle;
 
     // Start is called before the first frame update
     void Start()
@@ -74,9 +75,14 @@ public class BooLikeEnemy : MonoBehaviour
         Destroy(this.gameObject);
         
         dropItem(key);
+        dieParticleActive();
     }
     public void dropItem(GameObject I)
     {
         Instantiate(I, transform.position, Quaternion.identity);
+    }
+    public void dieParticleActive()
+    {
+        Instantiate(particle, transform.position, Quaternion.identity);
     }
 }

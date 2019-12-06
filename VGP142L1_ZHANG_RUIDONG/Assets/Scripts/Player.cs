@@ -82,6 +82,11 @@ public class Player : MonoBehaviour
                 SceneManager.LoadScene(0);
             }
         }
+        else if(other.gameObject.tag == "SpeedPower")
+        {
+            changeSpeedTo(1.5f);
+            Destroy(other.gameObject);
+        }
     }
 
     public void AnimationEnd()

@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    public ParticleSystem particle;
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag == "enemy")
         {
+            Instantiate(particle, transform.position, Quaternion.identity);
             Destroy(gameObject);
-            //Destroy(collision.gameObject);
             BooLikeEnemy enemySri = GameObject.Find("Zombie1").GetComponent<BooLikeEnemy>();
             enemySri.anim.Play("Z_FallingBack 0");
         }
         else
         {
+            Instantiate(particle, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
