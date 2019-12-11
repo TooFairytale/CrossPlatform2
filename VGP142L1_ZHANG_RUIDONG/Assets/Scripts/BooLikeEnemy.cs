@@ -4,12 +4,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.AI;
 
+
 public class BooLikeEnemy : MonoBehaviour
 {
     Rigidbody rb;
-    public GameObject ObjA;
-    public GameObject ObjB;
-    public Transform target;
+    public GameObject player;
+    public GameObject enemy;
+    public Transform playerTransform;
     public bool isRunning;
     public Animator anim;
     public MeshRenderer rend;
@@ -24,19 +25,18 @@ public class BooLikeEnemy : MonoBehaviour
         anim = GetComponent<Animator>();
         rend = GetComponent<MeshRenderer>();
         agent = GetComponent<NavMeshAgent>();
-        
     }
 
     void Update()
     {
 
-        Vector3 dirFromAtoB = (ObjB.transform.position - ObjA.transform.position).normalized;
-        float dotProd = Vector3.Dot(dirFromAtoB, ObjA.transform.forward);
+        Vector3 dirFromAtoB = (enemy.transform.position - player.transform.position).normalized;
+        float dotProd = Vector3.Dot(dirFromAtoB, player.transform.forward);
 
         if (dotProd > 0.5)
         {
             // ObjA is looking mostly towards ObjB
-            if(Vector3.Distance(target.position,transform.position) < 10)
+            if(Vector3.Distance(playerTransform.position,transform.position) < 10)
             {
 
             rb.velocity = Vector3.zero;
@@ -48,15 +48,15 @@ public class BooLikeEnemy : MonoBehaviour
         }
         else
         {
-            if(Vector3.Distance(target.position, transform.position) < 10)
+            if(Vector3.Distance(playerTransform.position, transform.position) < 10)
             {
 
-            transform.LookAt(target);
+            transform.LookAt(playerTransform);
             transform.localScale = new Vector3(1, 1, 1);
             isRunning = true;
             //rend.enabled = true;
             //transform.position += transform.forward * 3 * Time.deltaTime;
-                agent.SetDestination(target.position);
+                agent.SetDestination(playerTransform.position);
             //Debug.Log("runrun");
             }
         }
@@ -66,8 +66,9 @@ public class BooLikeEnemy : MonoBehaviour
     {
         if(collision.gameObject.tag=="Player")
         {
-            Destroy(collision.gameObject);
-            SceneManager.LoadScene(0);
+            
+            //Destroy(collision.gameObject);
+            //SceneManager.LoadScene(0);
         }
     }
     public void EnemyDie()

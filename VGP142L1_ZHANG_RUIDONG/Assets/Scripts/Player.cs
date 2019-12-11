@@ -13,12 +13,17 @@ public class Player : MonoBehaviour
     public float playerHP;
     ThirdPersonCharacter TPScri;
     public Image healthBar;
+    public ParticleSystem particle;
+    float dieTimer;
+    bool playerDead;
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
         TPScri = GetComponent<ThirdPersonCharacter>();
         playerHP = 100;
+        dieTimer = 2;
+        playerDead = false;
     }
 
     // Update is called once per frame
@@ -44,13 +49,21 @@ public class Player : MonoBehaviour
         {
             GoToGameOver();
         }
-
+        if(playerHP<=0)
+        {
+            playerDead = true;
+        }
+        if(playerDead)
+        {
+            dieTimer -= Time.deltaTime;
+            if (dieTimer <= 0)
+            {
+                GoToGameOver();
+                Debug.Log("change scene");
+            }
+        }
     }
-    IEnumerator wait(string name, bool value)
-    {
-        yield return new WaitForSeconds(2.0f);
-        anim.SetBool(name, value);
-    }
+    
     
 
     private void OnCollisionEnter(Collision collision)
@@ -71,6 +84,11 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "item")
         {
             Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.tag == "enemy")
+        {
+            TakeDamage(60);
+            playerDie();
         }
     }
     public void OnTriggerEnter(Collider other)
@@ -99,9 +117,9 @@ public class Player : MonoBehaviour
     }
     public void playerDie()
     {
-        if (playerHP <= 0)
+        if(playerDead)
         {
-            SceneManager.LoadScene(2);
+            dieParticleActive();
         }
     }
     public void TakeDamage(float amount)
@@ -114,4 +132,9 @@ public class Player : MonoBehaviour
         TPScri.m_MoveSpeedMultiplier = Speed;
         TPScri.m_AnimSpeedMultiplier = Speed;
     }
+    public void dieParticleActive()
+    {
+        Instantiate(particle, transform.position, Quaternion.identity);
+    }
+    
 }

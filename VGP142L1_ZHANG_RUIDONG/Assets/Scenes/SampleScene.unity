@@ -2335,7 +2335,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 701.6472, y: 7.4617324e+31, z: 3.0140224e+12, w: 3.0120655e+12}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 1
@@ -2623,6 +2623,8 @@ MonoBehaviour:
   anim: {fileID: 645650311}
   playerHP: 0
   healthBar: {fileID: 1307093444}
+  particle: {fileID: 2560319568652201583, guid: cf176108f1fc19945b31c794b28f2520,
+    type: 3}
 --- !u!4 &848755623 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 244616530486369849, guid: 25a1e45530cac2347ae76d642aede038,
@@ -2870,12 +2872,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.17246775, y: -0.013662547, z: 0.0023924336, w: 0.9849175}
-  m_LocalPosition: {x: 0.03, y: 1.9, z: -1.88}
+  m_LocalRotation: {x: 0.17246775, y: -0.013662548, z: 0.0023924338, w: 0.9849175}
+  m_LocalPosition: {x: 0.03000006, y: 1.9000015, z: -1.8800006}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 653246789}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 19.865002, y: 36.420002, z: 0}
 --- !u!45 &963194229
 Skybox:
@@ -3777,7 +3779,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 653246789}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 6.505, z: 0}
 --- !u!114 &1476029314
 MonoBehaviour:
@@ -4190,19 +4192,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 10800000, guid: 0b96cfde923514d4f94409c375d99959, type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 7.3341654e+34
+      value: 3e-45
       objectReference: {fileID: 0}
     - target: {fileID: 10800000, guid: 0b96cfde923514d4f94409c375d99959, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 6.850997e+16
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 10800000, guid: 0b96cfde923514d4f94409c375d99959, type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 8.557989e-39
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 10800000, guid: 0b96cfde923514d4f94409c375d99959, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 7.2156034e+22
+      value: 1e-45
       objectReference: {fileID: 0}
     - target: {fileID: 10800000, guid: 0b96cfde923514d4f94409c375d99959, type: 3}
       propertyPath: m_Intensity
@@ -5224,6 +5226,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   playerHP: 0
   healthBar: {fileID: 0}
+  particle: {fileID: 0}
 --- !u!4 &1990045265 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5658469626106745640, guid: 7926d53e91062b647a1f5038d36cdf5e,
@@ -5712,5 +5715,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2560319568652201583, guid: cf176108f1fc19945b31c794b28f2520,
         type: 3}
+    - target: {fileID: 8455397452717683250, guid: d3ff985402219e64a8a84d0dfb18f0a4,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 652981441}
+    - target: {fileID: 8455397452717683250, guid: d3ff985402219e64a8a84d0dfb18f0a4,
+        type: 3}
+      propertyPath: enemy
+      value: 
+      objectReference: {fileID: 1847645782}
+    - target: {fileID: 8455397452717683250, guid: d3ff985402219e64a8a84d0dfb18f0a4,
+        type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 653246789}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3ff985402219e64a8a84d0dfb18f0a4, type: 3}
