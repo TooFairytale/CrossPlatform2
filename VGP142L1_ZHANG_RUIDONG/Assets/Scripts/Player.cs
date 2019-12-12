@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public bool keyPickedUp;
     public Animator anim;
     public float playerHP;
+    public int playerLives;
     ThirdPersonCharacter TPScri;
     public Image healthBar;
     public ParticleSystem particle;
@@ -24,6 +25,7 @@ public class Player : MonoBehaviour
         playerHP = 100;
         dieTimer = 2;
         playerDead = false;
+        playerLives = 3;
     }
 
     // Update is called once per frame
@@ -58,9 +60,27 @@ public class Player : MonoBehaviour
             dieTimer -= Time.deltaTime;
             if (dieTimer <= 0)
             {
-                GoToGameOver();
-                Debug.Log("change scene");
+                if (playerLives <= 0)
+                {
+                    GoToGameOver();
+                    Debug.Log("change scene");
+                }
+                else
+                {
+                    load();
+                }
             }
+        }
+        //Call the Save System's Save Player function when you press 1. Pass it the current Player script component.
+        if (Input.GetKeyDown(KeyCode.F5))
+        {
+            save();
+        }
+
+        //Call the Save System's Load Player function
+        if (Input.GetKeyDown(KeyCode.F6))
+        {
+            load();
         }
     }
     
@@ -120,6 +140,9 @@ public class Player : MonoBehaviour
         if(playerDead)
         {
             dieParticleActive();
+            playerLives -= 1;
+            save();
+            Debug.Log("playerLives = " + playerLives);
         }
     }
     public void TakeDamage(float amount)
@@ -136,5 +159,24 @@ public class Player : MonoBehaviour
     {
         Instantiate(particle, transform.position, Quaternion.identity);
     }
-    
+    public void save()
+    {
+        SaveSystem.SavePlayer(this);
+    }
+    public void load()
+    {
+        //Load player returns type PlayerData
+        PlayerData data = SaveSystem.LoadPlayer();
+
+        if (data != null)
+        {
+            //grab the Health, Level and Position in our saved data and update our player
+            playerHP = data.health;
+            healthBar.fillAmount = data.HPbar;
+            playerLives = data.lives;
+            //level = data.level;
+
+            transform.position = new Vector3(data.playerPosition[0], data.playerPosition[1], data.playerPosition[2]);
+        }
+    }
 }
