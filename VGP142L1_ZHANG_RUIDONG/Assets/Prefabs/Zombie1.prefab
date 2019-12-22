@@ -1254,6 +1254,7 @@ GameObject:
   - component: {fileID: 8455397452717683261}
   - component: {fileID: 8455397452717683260}
   - component: {fileID: 8455397452717683251}
+  - component: {fileID: 4267648141773383464}
   - component: {fileID: 8455397452717683250}
   m_Layer: 0
   m_Name: Zombie1
@@ -1339,6 +1340,26 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.6419678, y: 1.855484, z: 0.45072937}
   m_Center: {x: 0.025970459, y: 0.9080887, z: -0.017158508}
+--- !u!114 &4267648141773383464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8455397452717683249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 539963b27b07d164d9f54079a0e9a3d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  enemy: {fileID: 0}
+  playerTransform: {fileID: 0}
+  isRunning: 0
+  anim: {fileID: 0}
+  rend: {fileID: 0}
+  key: {fileID: 0}
+  particle: {fileID: 0}
 --- !u!114 &8455397452717683250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1351,11 +1372,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75831365e99e1884e92955b671e33045, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjA: {fileID: 0}
-  ObjB: {fileID: 8455397452717683249}
-  target: {fileID: 0}
+  player: {fileID: 0}
+  enemy: {fileID: 0}
+  playerTransform: {fileID: 0}
   isRunning: 0
   anim: {fileID: 0}
+  rend: {fileID: 0}
+  key: {fileID: 0}
+  particle: {fileID: 0}
 --- !u!1 &8455397452732441599
 GameObject:
   m_ObjectHideFlags: 0

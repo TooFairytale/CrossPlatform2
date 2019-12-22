@@ -45,7 +45,7 @@ public class Player : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Space))
         {
-            anim.Play("Jump");
+            //anim.Play("Jump");
         }
         else if (Input.GetKeyDown(KeyCode.I))
         {
@@ -125,6 +125,21 @@ public class Player : MonoBehaviour
             changeSpeedTo(1.5f);
             Destroy(other.gameObject);
         }
+        else if (other.gameObject.tag == "HealthPowerUp")
+        {
+            TakeDamage(-20f);
+            Destroy(other.gameObject);
+        }
+        else if (other.gameObject.tag == "JumpPowerUp")
+        {
+            changeJumpPowerTo(15);
+            Destroy(other.gameObject);
+        }
+        else if (other.gameObject.tag == "SlowPowerUp")
+        {
+            changeSpeedTo(1f);
+            Destroy(other.gameObject);
+        }
     }
 
     public void AnimationEnd()
@@ -154,6 +169,10 @@ public class Player : MonoBehaviour
     {
         TPScri.m_MoveSpeedMultiplier = Speed;
         TPScri.m_AnimSpeedMultiplier = Speed;
+    }
+    public void changeJumpPowerTo(float jump)
+    {
+        TPScri.m_JumpPower = jump;
     }
     public void dieParticleActive()
     {

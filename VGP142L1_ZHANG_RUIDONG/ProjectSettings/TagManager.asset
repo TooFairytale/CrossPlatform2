@@ -12,6 +12,9 @@ TagManager:
   - waterObstacle
   - toxicObstacle
   - SpeedPower
+  - HealthPowerUp
+  - JumpPowerUp
+  - SlowPowerUp
   layers:
   - Default
   - TransparentFX

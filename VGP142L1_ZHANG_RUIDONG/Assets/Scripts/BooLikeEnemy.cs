@@ -35,7 +35,7 @@ public class BooLikeEnemy : MonoBehaviour
 
         if (dotProd > 0.5)
         {
-            // ObjA is looking mostly towards ObjB
+            // player is looking mostly towards enemy
             if(Vector3.Distance(playerTransform.position,transform.position) < 10)
             {
 
