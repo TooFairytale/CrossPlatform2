@@ -1255,6 +1255,7 @@ GameObject:
   - component: {fileID: 8455397452717683260}
   - component: {fileID: 8455397452717683251}
   - component: {fileID: 4267648141773383464}
+  - component: {fileID: 7913498340178678503}
   - component: {fileID: 8455397452717683250}
   m_Layer: 0
   m_Name: Zombie1
@@ -1360,6 +1361,23 @@ MonoBehaviour:
   rend: {fileID: 0}
   key: {fileID: 0}
   particle: {fileID: 0}
+--- !u!114 &7913498340178678503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8455397452717683249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ade58a0c2d6af514faf14a41e635c0cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemyBullet: {fileID: 0}
+  ShootingPoint: {fileID: 0}
+  BulletSpeed: 0
+  player: {fileID: 0}
+  enemy: {fileID: 0}
 --- !u!114 &8455397452717683250
 MonoBehaviour:
   m_ObjectHideFlags: 0

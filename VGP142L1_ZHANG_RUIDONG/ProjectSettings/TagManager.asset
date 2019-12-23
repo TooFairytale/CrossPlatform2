@@ -15,6 +15,8 @@ TagManager:
   - HealthPowerUp
   - JumpPowerUp
   - SlowPowerUp
+  - ShootingEnemy
+  - Boo
   layers:
   - Default
   - TransparentFX

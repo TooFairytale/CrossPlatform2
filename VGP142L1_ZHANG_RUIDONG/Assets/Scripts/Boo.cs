@@ -74,17 +74,7 @@ public class Boo : MonoBehaviour
     public void EnemyDie()
     {
         Destroy(this.gameObject);
-
-        dropItem(key);
-        dieParticleActive();
     }
-    public void dropItem(GameObject I)
-    {
-        Instantiate(I, transform.position, Quaternion.identity);
-    }
-    public void dieParticleActive()
-    {
-        Instantiate(particle, transform.position, Quaternion.identity);
-    }
+    
 }
 

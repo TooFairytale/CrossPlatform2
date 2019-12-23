@@ -137,7 +137,7 @@ public class Player : MonoBehaviour
         }
         else if (other.gameObject.tag == "SlowPowerUp")
         {
-            changeSpeedTo(1f);
+            changeSpeedTo(3f);
             Destroy(other.gameObject);
         }
     }
